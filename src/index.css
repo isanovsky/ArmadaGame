@@ -1,1 +1,151 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #1c1c1e;
+  --color-bg-secondary: #242427;
+  --color-bg-tertiary: #2c2c30;
+  --color-bg-panel: #202023;
+  --color-text-primary: #e8e4dc;
+  --color-text-secondary: #9e9a91;
+  --color-text-muted: #6b6862;
+  --color-signal-amber: #d4a017;
+  --color-signal-amber-dim: #a67d12;
+  --color-signal-amber-glow: #e8b830;
+  --color-friend: #3a8a5c;
+  --color-friend-dim: #2d6b47;
+  --color-foe: #b84a3c;
+  --color-foe-dim: #8c3830;
+  --color-danger: #c43c3c;
+  --color-border: #3a3a3e;
+  --color-border-light: #4a4a4e;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* Tabular numbers for coordinates, distances, hull, timers */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+}
+
+/* Scanline overlay for console aesthetic */
+.scanline-overlay {
+  position: relative;
+}
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* Radar sweep animation */
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-radar {
+  animation: radar-sweep 4s linear infinite;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1.2s step-end infinite;
+}
+
+/* Subtle pulse for signal elements */
+@keyframes signal-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+.animate-signal {
+  animation: signal-pulse 2s ease-in-out infinite;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-radar,
+  .animate-blink,
+  .animate-signal {
+    animation: none;
+  }
+}
+
+/* Panel border style */
+.panel-border {
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+.panel-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 1px;
+  background: var(--color-signal-amber);
+}
+.panel-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 1px;
+  background: var(--color-signal-amber);
+}
+
+/* Status indicator dot */
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.status-dot--active {
+  background: var(--color-friend);
+  box-shadow: 0 0 4px var(--color-friend);
+}
+.status-dot--warning {
+  background: var(--color-signal-amber);
+  box-shadow: 0 0 4px var(--color-signal-amber);
+}
+.status-dot--danger {
+  background: var(--color-danger);
+  box-shadow: 0 0 4px var(--color-danger);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 3px;
+}
