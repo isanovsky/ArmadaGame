@@ -138,6 +138,11 @@ body {
   box-shadow: 0 0 4px var(--color-danger);
 }
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -148,4 +153,11 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--color-border-light);
   border-radius: 3px;
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-signal-amber);
+  outline-offset: 2px;
 }
