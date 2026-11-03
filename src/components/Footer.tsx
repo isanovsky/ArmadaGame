@@ -67,8 +67,19 @@ function Footer() {
             <span className="mx-2 text-border">|</span>
             <span className="text-signal-amber/60">STATUS:</span> DOKUMEN DESAIN
           </div>
-          <div className="font-mono text-xs text-text-muted">
-            Bahasa Indonesia -- Teks UI dan komentar kode
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-xs text-text-muted">
+              Bahasa Indonesia -- Teks UI dan komentar kode
+            </span>
+            <a
+              href="#"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-border text-text-muted text-xs font-mono hover:border-signal-amber hover:text-signal-amber transition-colors"
+            >
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+              </svg>
+              Kembali ke atas
+            </a>
           </div>
         </div>
       </div>
